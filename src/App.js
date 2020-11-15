@@ -1,25 +1,39 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { Component } from 'react';
+import { BrowserRouter, Route, Switch, Router } from "react-router-dom";
+import LoginPage from './components/loginPage'
+import ForbiddenPage from './components/forbiddenPage'
+import LayoutWrapper from './components/layoutWrapper';
+import SuperAdminPage from './components/superAdminPage';
+import AdminPage from './components/adminPage';
+import UserPage from './components/userPage';
+import NotFoundPage from './components/notFoundPage'
+import { createBrowserHistory } from 'history';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const history = createBrowserHistory();
+
+export default class App extends Component {
+  render() {
+    return (
+      <Router history={history}>
+        <Switch>
+            <Route path="/login" exact component={LoginPage} />
+            <Route path="/403" exact component={ForbiddenPage} />
+            <Route component={withNav}></Route>
+        </Switch>
+      </Router>
+    );
+  }
 }
 
-export default App;
+const withNav = () => (
+  <div className="App">
+    <LayoutWrapper>
+        <Route path="/superadmin_page" component={SuperAdminPage} />
+        <Route path="/admin_page" component={AdminPage} />
+        <Route path="/user_page" component={UserPage} />
+        <Route component={NotFoundPage} />
+    </LayoutWrapper>
+  </div>
+)
+
