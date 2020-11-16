@@ -34,8 +34,8 @@ const LoginPage = () => {
             return hashedToken;
         } else {
             setloginError(true);
+
             return false;
-            // alert('USER NOT FOUND');
         }
     }
 
@@ -77,7 +77,7 @@ const LoginPage = () => {
 
     return (
         <div>
-            <h2>Welcome</h2>
+            <h1>Welcome</h1>
             <div className="container" id="container">
                 <div className="form-container sign-in-container">
                     <form id="signInForm">

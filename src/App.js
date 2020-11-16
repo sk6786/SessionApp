@@ -1,4 +1,3 @@
-import './App.css';
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch, Router } from "react-router-dom";
 import LoginPage from './components/loginPage'
@@ -9,6 +8,8 @@ import AdminPage from './components/adminPage';
 import UserPage from './components/userPage';
 import NotFoundPage from './components/notFoundPage'
 import { createBrowserHistory } from 'history';
+import 'antd/dist/antd.css';
+import './App.css';
 
 const history = createBrowserHistory();
 

@@ -1,3 +1,13 @@
+import { notification } from 'antd';
+
+export const showNotification = (message) => {
+  notification.open({
+    message: 'Inactivity Notification',
+    description: message,
+    duration: 0
+  });
+};
+
 export const inactivityTime = () => {
     var sessionTime;
     var alertTime;
@@ -12,15 +22,20 @@ export const inactivityTime = () => {
         clearTimeout(alertTime);
         alertTime = setTimeout(showWarning, 45000);
         sessionTime = setTimeout(logOut, 60000);
+        // alertTime = setTimeout(showWarning, 5000);
+        // sessionTime = setTimeout(logOut, 20000);
     }
 
     function logOut() {
-      alert('Sorry, your session expired.');
-      sessionStorage.clear();
-      window.location.href = '/login';
+      showNotification('Sorry, your session expired.');
+
+      setTimeout(() => {
+        sessionStorage.clear();
+        window.location.href = '/login';
+      }, 3000);
     }
 
     function showWarning() {
-      alert('Your session will expire soon due to inactivity.');
+      showNotification('Your session will expire in 15 seconds due to inactivity.');
     }
 }
